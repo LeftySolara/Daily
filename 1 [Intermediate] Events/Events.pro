@@ -26,15 +26,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         event.cpp \
-        eventmodel.cpp
+        eventmodel.cpp \
+    dialogaddevent.cpp
 
 HEADERS += \
         mainwindow.h \
         event.h \
-        eventmodel.h
+        eventmodel.h \
+    dialogaddevent.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    dialogaddevent.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

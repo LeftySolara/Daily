@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "eventmodel.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,11 +18,13 @@ public:
 
 private slots:
     void on_actionQuit_triggered();
-
     void on_actionAbout_Qt_triggered();
+
+    void on_pushButtonCreate_clicked();
 
 private:
     Ui::MainWindow *ui;
+    EventModel *event_model;
 };
 
 #endif // MAINWINDOW_H

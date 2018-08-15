@@ -51,3 +51,33 @@ Qt::ItemFlags EventModel::flags(const QModelIndex &index) const
 
     return Qt::ItemIsEditable | Qt::ItemIsSelectable;
 }
+
+bool EventModel::insertRows(int row, int count, const QModelIndex &parent)
+{
+    int old_size = events.size();
+
+    beginInsertRows(parent, row, row + count - 1);
+    events.resize(old_size + count);
+    for (int i = row; i < row + count; ++i) {
+        Event *event = new Event();
+        events.insert(i, event);
+    }
+    endInsertRows();
+
+    return events.capacity() > old_size;
+}
+
+bool EventModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    int old_size = events.size();
+
+    beginRemoveRows(parent, row, row + count - 1);
+    for (int i = row; i < row + count; ++i) {
+        delete events.at(row);
+        events.removeAt(row);
+    }
+    events.resize(events.length());
+    endRemoveRows();
+
+    return events.size() < old_size;
+}
