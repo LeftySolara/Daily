@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QListView>
 #include "eventmodel.h"
 
 namespace Ui {

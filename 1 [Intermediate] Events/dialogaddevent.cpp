@@ -6,6 +6,7 @@ DialogAddEvent::DialogAddEvent(QWidget *parent) :
     ui(new Ui::DialogAddEvent)
 {
     ui->setupUi(this);
+    ui->dateTimeEdit->setDate(QDateTime::currentDateTime().date());
 }
 
 DialogAddEvent::~DialogAddEvent()

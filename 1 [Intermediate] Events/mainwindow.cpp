@@ -8,6 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     event_model = new EventModel();
+
+    ui->listView = new QListView();
+    ui->listView->setModel(event_model);
+
     ui->setupUi(this);
 }
 
@@ -33,18 +37,8 @@ void MainWindow::on_pushButtonCreate_clicked()
     int result = dialog->exec();
 
     if (result == QDialog::Accepted) {
-        int row = event_model->rowCount();
-
-        event_model->insertRows(row, 1);
-        QModelIndex index = event_model->index(row);
-
-        event_model->setData(index, dialog->name(), Event::NameRole);
-        event_model->setData(index, dialog->description(), Event::DescriptionRole);
-        event_model->setData(index, dialog->dateTime(), Event::DateTimeRole);
-
-        ui->labelNameData->setText(dialog->name());
-        ui->labelDescriptionData->setText(dialog->description());
-        ui->labelDateTimeData->setText(dialog->dateTime().toString("ddd d MMM, H:mm A"));
+        event_model->add_event(dialog->name(), dialog->description(), dialog->dateTime());
+        ui->listView->update();
     }
 
     delete dialog;
